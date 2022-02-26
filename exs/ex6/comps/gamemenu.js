@@ -3,8 +3,17 @@ var template_menu = document.createElement("template"); //<template> </template>
 
 //To-do - CREATE THE UI HERE!
 template_menu.innerHTML = `
-<div class='menu'>
+    <style>
+      .menu{
+        color: white;
+        background-color: grey;
+        border-radius: 2px;
+        display: inline-flex;
+        padding: 2px;
+      }
+    </style>
 
+<div class='menu'>
 </div>
 `;
 
@@ -22,10 +31,30 @@ class GameMenu extends HTMLElement {
     //MUST HAVE - FUNCTION THAT RUNS AFTER IT'S CONNECTED
     connectedCallback(){
         this.shadowRoot.appendChild(template_menu.content.cloneNode(true)); //use the template to make a clone
-    }
+        if(this.getAttribute("text")){
+            this.shadowRoot.querySelector(".menu").innerText=this.getAttribute("text");
+        }
 
-    //To-do - CREATE THE FUNCTIONALITIES HERE!
+        if(this.getAttribute("text")==="start"){
+            this.shadowRoot.querySelector(".menu").onclick = () => this.startGame()
+
+        } else{
+            this.shadowRoot.querySelector(".menu").onclick = () => {
+                document.querySelector("#gamebg").changeBG(`./imgs/${this.getAttribute("text")}.svg`);
+                document.querySelector(".color").changeParticle(this.getAttribute("text"));   
+                document.querySelector(".gamehealth").resetHealth();
+                document.querySelector(".color").moveParticles(this.getAttribute("text"));  
+            } 
+        }
+    }  
+    startGame(){
+        document.querySelector(".color").moveParticles();
+    }
 }
+    //To-do - CREATE THE FUNCTIONALITIES HERE!
+    
 
 //MUST HAVE - define the tag for the custom elements
 customElements.define("game-menu", GameMenu)
+
+

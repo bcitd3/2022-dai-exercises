@@ -4,10 +4,34 @@
     <title>Understanding Data Flow</title>
     <script src="comps/gamemenu.js"></script>
     <script src="comps/gamebg.js"></script>
+    <script src="comps/particles.js"></script>
+    <script src="comps/healthbar.js"></script>
   </head>
 
   <body>
-    <game-menu></game-menu>
-    <game-bg></game-bg>
+    <game-menu
+    text="desert">
+    </game-menu>
+    <game-menu 
+    text="forest">
+    </game-menu>
+    <game-menu 
+    text="snow">
+    </game-menu>
+    <game-menu 
+    text="valley">
+    </game-menu>
+    <game-menu 
+    text="start">
+    </game-menu>
+    <game-bg
+      id="gamebg"
+    ></game-bg>
+    <the-particle
+    class ="color"
+    ></the-particle>
+    <the-healthbar
+    class = "gamehealth">
+    </the-healthbar>
   </body>
 </html>
